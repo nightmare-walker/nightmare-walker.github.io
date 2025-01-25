@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nightmare Relief</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #87CEFA, #4682B4);
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .tab-button {
+            background: #4682B4;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            transition: transform 0.2s;
+            margin-right: 0.5rem;
+        }
+
+        .tab-button:hover {
+            background: #5a9bd6;
+            transform: scale(1.05);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center py-10">
+
+    <header class="text-center">
+        <h1 class="text-white text-4xl font-bold mb-6"> Nightmare Vault for my Nightmare Hopper</h1>
+        <p class="text-white text-lg">A comforting space, just for you</p>
+    </header>
+
+    <nav class="w-full max-w-4xl mb-6 flex overflow-auto">
+        <button class="tab-button" onclick="showTab('voice')">Voice Recordings</button>
+        <button class="tab-button" onclick="showTab('memories')">Memories</button>
+        <button class="tab-button" onclick="showTab('journal')">Thoughts Journal</button>
+        <button class="tab-button" onclick="showTab('drawing')">Dream Catcher</button>
+        <button class="tab-button" onclick="showTab('music')">Soothing Music</button>
+    </nav>
+
+    <main class="w-full max-w-4xl">
+
+        <!-- Personalized Voice Recordings -->
+        <section id="voice" class="hidden">
+            <h2 class="text-white text-2xl mb-4">From my Notebook</h2>
+            <div class="custom-card space-y-4">
+                <audio controls class="w-full">
+                    <source src="voice1.mp3" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="voice2.mp3" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="voice3.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <h2 class="text-white text-2xl mb-4">Random Poems</h2>
+            <div class="custom-card space-y-4">
+                <audio controls class="w-full">
+                    <source src="voice1.mp3" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="voice2.mp3" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="voice3.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <h2 class="text-white text-2xl mb-4">Random Thoughts</h2>
+            <div class="custom-card space-y-4">
+                <audio controls class="w-full">
+                    <source src="voice1.mp3" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="voice2.mp3" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="voice3.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <h2 class="text-white text-2xl mb-4">It sucks to be me but you make it worth a while</h2>
+            <div class="custom-card space-y-4">
+                <audio controls class="w-full">
+                    <source src="voice1.mp3" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="voice2.mp3" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="voice3.mp3" type="audio/mp3">
+                </audio>
+            </div>
+        </section>
+
+        <!-- Shared Memories -->
+        <section id="memories" class="hidden">
+            <h2 class="text-white text-2xl mb-4">Joint Life</h2>
+            <div class="custom-card grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="flex flex-col items-center">
+                    <img src="memory1.jpg" alt="Memory 1" class="rounded-lg shadow-lg">
+                    <p class="text-sm mt-2">Caption for memory 1</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <img src="memory2.jpg" alt="Memory 2" class="rounded-lg shadow-lg">
+                    <p class="text-sm mt-2">Caption for memory 2</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <img src="memory3.jpg" alt="Memory 3" class="rounded-lg shadow-lg">
+                    <p class="text-sm mt-2">Caption for memory 3</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Thoughts Journal -->
+        <section id="journal" class="hidden">
+            <h2 class="text-white text-2xl mb-4">Thoughts Journal</h2>
+            <div class="custom-card">
+                <form class="space-y-4">
+                    <textarea placeholder="Write your thoughts here..." class="w-full h-40 p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    <button type="submit" class="button">Submit</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Dream Catcher Drawing -->
+        <section id="drawing" class="hidden">
+            <h2 class="text-white text-2xl mb-4">Dream Catcher Drawing</h2>
+            <div class="custom-card">
+                <p class="text-sm mb-4">Draw and color your dream catcher here!</p>
+                <canvas id="drawingCanvas" class="w-full h-80 border border-gray-300 rounded-lg"></canvas>
+                <button class="button mt-4">Save Drawing</button>
+            </div>
+        </section>
+
+        <!-- Soothing Music -->
+        <section id="music" class="hidden">
+            <h2 class="text-white text-2xl mb-4">Soothing Music</h2>
+            <div class="custom-card space-y-4">
+                <audio controls class="w-full">
+                    <source src="song1.mp3" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="song2.mp3" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="song3.mp3" type="audio/mp3">
+                </audio>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="w-full bg-blue-900 text-white py-4 mt-10 text-center">
+        <p class="text-sm">&copy; 2025 Nightmare Relief. All rights reserved.</p>
+        <p class="text-sm">Made with ❤️ for my bestie.</p>
+    </footer>
+
+    <script>
+        function showTab(tabId) {
+            const sections = document.querySelectorAll("main section");
+            sections.forEach(section => section.classList.add("hidden"));
+            document.getElementById(tabId).classList.remove("hidden");
+        }
+
+        // Show the first tab by default
+        showTab('voice');
+    </script>
+
+</body>
+
+</html>

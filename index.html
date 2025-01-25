@@ -4,21 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nightmare Relief</title>
+    <title>Nightmare Vault</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.7/paper-full.min.js"></script>
     <style>
         body {
             background: linear-gradient(to bottom, #87CEFA, #4682B4);
             font-family: 'Nunito', sans-serif;
         }
 
+        .color-picker .color-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
         .tab-button {
             background: #4682B4;
-            color: white;
+            color: rgb(5, 12, 49);
             padding: 0.75rem 1.5rem;
             border-radius: 0.75rem;
             transition: transform 0.2s;
             margin-right: 0.5rem;
+            font-size: 18px;
         }
 
         .tab-button:hover {
@@ -33,17 +42,40 @@
         .active {
             display: block;
         }
+        body {
+            background: linear-gradient(to bottom, #87CEFA, #4682B4);
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .tab-button {
+            background: #4682B4;
+            color: rgb(5, 12, 49);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            transition: transform 0.2s;
+            margin-right: 0.5rem;
+            font-size: 18px;
+        }
+
+
+        #drawingCanvas {
+            border-radius: 50%;
+            border: 2px solid aliceblue;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col items-center py-10">
+<body class="min-h-screen flex flex-col items-center py-10 ">
 
     <header class="text-center">
-        <h1 class="text-white text-4xl font-bold mb-6"> Nightmare Vault for my Nightmare Hopper</h1>
-        <p class="text-white text-lg">A comforting space, just for you</p>
+        <h1 class="text-[rgb(5,12,49)] text-4xl font-bold mb-6"> Nightmare Vault for my Nightmare Hopper</h1>
+        <p class="text-[rgb(5,12,49)] text-lg  mb-6">A comforting space, just for you</p>
     </header>
 
-    <nav class="w-full max-w-4xl mb-6 flex overflow-auto">
+    <nav class="w-full max-w-4xl mb-6 flex items-center">
         <button class="tab-button" onclick="showTab('voice')">Voice Recordings</button>
         <button class="tab-button" onclick="showTab('memories')">Memories</button>
         <button class="tab-button" onclick="showTab('journal')">Thoughts Journal</button>
@@ -55,7 +87,43 @@
 
         <!-- Personalized Voice Recordings -->
         <section id="voice" class="hidden">
-            <h2 class="text-white text-2xl mb-4">From my Notebook</h2>
+            <h2 class="text-[rgb(5,12,49)] text-2xl mb-4 mt-6">From my Notebook</h2>
+            <div class="custom-card space-y-4">
+                <audio controls class="w-full">
+                    <source src="asserts\audio\notebook 2.m4a" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="asserts\audio\notebook 3.m4a" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="asserts\audio\notebook 1.m4a" type="audio/mp3">
+                </audio>
+            </div>
+            <h2 class="text-[rgb(5,12,49)] text-2xl mb-4 mt-6">Random Poems</h2>
+            <div class="custom-card space-y-4">
+                <audio controls class="w-full">
+                    <source src="asserts\audio\poem 1.m4a" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="asserts\audio\poem 2.m4a" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="asserts\audio\poem 3.m4a" type="audio/mp3">
+                </audio>
+            </div>
+            <h2 class="text-[rgb(5,12,49)] text-2xl mb-4 mt-6">Random Thoughts</h2>
+            <div class="custom-card space-y-4">
+                <audio controls class="w-full">
+                    <source src="asserts\audio\why 1.m4a" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="asserts\audio\why.m4a" type="audio/mp3">
+                </audio>
+                <audio controls class="w-full">
+                    <source src="asserts\audio\why2.m4a" type="audio/mp3">
+                </audio>
+            </div>
+            <!-- <h2 class="text-[rgb(5,12,49)] text-2xl mb-4 mt-6">Why?</h2>
             <div class="custom-card space-y-4">
                 <audio controls class="w-full">
                     <source src="voice1.mp3" type="audio/mp3">
@@ -66,49 +134,12 @@
                 <audio controls class="w-full">
                     <source src="voice3.mp3" type="audio/mp3">
                 </audio>
-            </div>
-            <h2 class="text-white text-2xl mb-4">Random Poems</h2>
-            <div class="custom-card space-y-4">
-                <audio controls class="w-full">
-                    <source src="voice1.mp3" type="audio/mp3">
-                </audio>
-                <audio controls class="w-full">
-                    <source src="voice2.mp3" type="audio/mp3">
-                </audio>
-                <audio controls class="w-full">
-                    <source src="voice3.mp3" type="audio/mp3">
-                </audio>
-            </div>
-            <h2 class="text-white text-2xl mb-4">Random Thoughts</h2>
-            <div class="custom-card space-y-4">
-                <audio controls class="w-full">
-                    <source src="voice1.mp3" type="audio/mp3">
-                </audio>
-                <audio controls class="w-full">
-                    <source src="voice2.mp3" type="audio/mp3">
-                </audio>
-                <audio controls class="w-full">
-                    <source src="voice3.mp3" type="audio/mp3">
-                </audio>
-            </div>
-            <h2 class="text-white text-2xl mb-4">It sucks to be me but you make it worth a while</h2>
-            <div class="custom-card space-y-4">
-                <audio controls class="w-full">
-                    <source src="voice1.mp3" type="audio/mp3">
-                </audio>
-                <audio controls class="w-full">
-                    <source src="voice2.mp3" type="audio/mp3">
-                </audio>
-                <audio controls class="w-full">
-                    <source src="voice3.mp3" type="audio/mp3">
-                </audio>
-            </div>
+            </div> -->
         </section>
 
         <!-- Shared Memories -->
         <section id="memories" class="hidden">
-            <h2 class="text-white text-2xl mb-4">Joint Life</h2>
-            <div class="custom-card grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="custom-card grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <div class="flex flex-col items-center">
                     <img src="asserts\images\1.png" alt="Memory 1" class="rounded-lg shadow-lg">
                 </div>
@@ -119,33 +150,56 @@
                 <div class="flex flex-col items-center">
                     <img src="asserts\images\3.png" alt="Memory 3" class="rounded-lg shadow-lg">
                 </div>
+                <div class="flex flex-col items-center">
+                    <img src="asserts\images\memory4.jpg" alt="Memory 1" class="rounded-lg shadow-lg">
+                    <p class="text-sm mt-2">Once upon a time in DHA roundabout.</p>
+                </div>
+                <div class="flex flex-col items-center mt-12">
+                    <img src="asserts\images\2.png" alt="Memory 2" class="rounded-lg shadow-lg">
+                </div>
+                <div class="flex flex-col items-center">
+                    <img src="asserts\images\memory5.jpg" alt="Memory 3" class="rounded-lg shadow-lg">
+                    <p class="text-sm mt-2">Farewell shenanigans in bus.</p>
+                </div>
             </div>
         </section>
 
         <!-- Thoughts Journal -->
         <section id="journal" class="hidden">
-            <h2 class="text-white text-2xl mb-4">Thoughts Journal</h2>
+            <h2 class="text-[rgb(5,12,49)] text-2xl mb-4">Thoughts Journal</h2>
             <div class="custom-card">
-                <form class="space-y-4">
-                    <textarea placeholder="Write your thoughts here..." class="w-full h-40 p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                    <button type="submit" class="button">Submit</button>
+                <form action="https://docs.google.com/forms/d/e/1FAIpQLSf-z9gnQqYSKTJBr6uqDLndX0UaSx1gd6nrT0o0ELC2Mf4c_g/formResponse" method="POST" target="hidden_iframe" onsubmit="return submitForm()">
+                    <!-- Embed the Google Form -->
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-z9gnQqYSKTJBr6uqDLndX0UaSx1gd6nrT0o0ELC2Mf4c_g/viewform?embedded=true" width="900" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 </form>
             </div>
         </section>
+        
 
         <!-- Dream Catcher Drawing -->
         <section id="drawing" class="hidden">
-            <h2 class="text-white text-2xl mb-4">Dream Catcher Drawing</h2>
-            <div class="custom-card">
-                <p class="text-sm mb-4">Draw and color your dream catcher here!</p>
-                <canvas id="drawingCanvas" class="w-full h-80 border border-gray-300 rounded-lg"></canvas>
-                <button class="button mt-4">Save Drawing</button>
+            <h2 class="text-[rgb(5,12,49)] text-2xl mb-4">Dream Catcher Drawing</h2>
+            <div class="custom-card flex items-center">
+                <div class="color-palette flex flex-col space-y-2 mr-4">
+                    <button onclick="setColor('#4682B4')" class="color-btn w-10 h-10 rounded-full" style="background-color: #4682B4;"></button>
+                    <button onclick="setColor('#FF6B6B')" class="color-btn w-10 h-10 rounded-full" style="background-color: #FF6B6B;"></button>
+                    <button onclick="setColor('#2ECC71')" class="color-btn w-10 h-10 rounded-full" style="background-color: #2ECC71;"></button>
+                    <button onclick="setColor('#9B59B6')" class="color-btn w-10 h-10 rounded-full" style="background-color: #9B59B6;"></button>
+                    <button onclick="setColor('#F39C12')" class="color-btn w-10 h-10 rounded-full" style="background-color: #F39C12;"></button>
+                    <button onclick="setColor('#3498DB')" class="color-btn w-10 h-10 rounded-full" style="background-color: #3498DB;"></button>
+                    <button onclick="setColor('#1ABC9C')" class="color-btn w-10 h-10 rounded-full" style="background-color: #1ABC9C;"></button>
+                    <button onclick="setColor('#E74C3C')" class="color-btn w-10 h-10 rounded-full" style="background-color: #E74C3C;"></button>
+                    <button onclick="setColor('#000000')" class="color-btn w-10 h-10 rounded-full" style="background-color: #000000;"></button>
+                </div>
+                <canvas id="drawingCanvas" width="400" height="400" style="border: 2px solid #4682B4; border-radius: 50%; background-color: white;"></canvas>
+                <p class="text-sm mb-20">Take a Screenshot to save, download capability is under development.</p>
             </div>
         </section>
 
         <!-- Soothing Music -->
         <section id="music" class="hidden">
-            <h2 class="text-white text-2xl mb-4">Soothing Music</h2>
+            <h2 class="text-[rgb(5,12,49)] text-2xl mb-4">Coming Soon...</h2>
+            <!-- <h2 class="text-[rgb(5,12,49)] text-2xl mb-4">Soothing Music</h2>
             <div class="custom-card space-y-4">
                 <audio controls class="w-full">
                     <source src="song1.mp3" type="audio/mp3">
@@ -155,15 +209,15 @@
                 </audio>
                 <audio controls class="w-full">
                     <source src="song3.mp3" type="audio/mp3">
-                </audio>
+                </audio> -->
             </div>
         </section>
 
     </main>
 
-    <footer class="w-full bg-blue-900 text-white py-4 mt-10 text-center">
-        <p class="text-sm">&copy; 2025 Nightmare Relief. All rights reserved.</p>
-        <p class="text-sm">Made with ❤️ for my bestie.</p>
+    <footer class="w-full text-white py-4 mt-16 mb-0 text-center"  style="background-color: rgb(5, 12, 49);">
+        <p class="text-sm mt-40">&copy; 2025 Nightmare Relief. All rights reserved.</p>
+        <p class="text-sm mb-20">Made with ❤️ for my love.</p>
     </footer>
 
     <script>
@@ -175,7 +229,68 @@
 
         // Show the first tab by default
         showTab('voice');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('drawingCanvas');
+            const ctx = canvas.getContext('2d');
+            let isDrawing = false;
+            let currentColor = '#4682B4';
+    
+            function setColor(color) {
+                currentColor = color;
+            }
+            window.setColor = setColor;
+    
+            function drawCircle(x, y, radius) {
+                ctx.beginPath();
+                ctx.arc(200, 200, radius, 0, Math.PI * 2);
+                ctx.closePath();
+            }
+    
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+    
+            function startDrawing(e) {
+                isDrawing = true;
+                draw(e);
+            }
+    
+            function draw(e) {
+                if (!isDrawing) return;
+    
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+    
+                // Check if point is inside circle
+                const centerX = 200;
+                const centerY = 200;
+                const radius = 190;
+                const dx = x - centerX;
+                const dy = y - centerY;
+    
+                if (dx * dx + dy * dy <= radius * radius) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = currentColor;
+                    ctx.lineWidth = 5;
+                    ctx.lineCap = 'round';
+                    ctx.lineTo(x, y);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(x, y);
+                }
+            }
+    
+            function stopDrawing() {
+                isDrawing = false;
+                ctx.beginPath();
+            }
+        });
+
     </script>
+
 
 </body>
 

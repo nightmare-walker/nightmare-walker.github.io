@@ -12,7 +12,98 @@
             background: linear-gradient(to bottom, #87CEFA, #4682B4);
             font-family: 'Nunito', sans-serif;
         }
-
+        #game-container {
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(to bottom, #87CEFA, #4682B4);
+            position: relative;
+        }
+        .balloon {
+            width: 50px;
+            height: 70px;
+            position: absolute;
+            cursor: pointer;
+        }
+        #score-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #high-score {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 18px;
+        }
+        #timer {
+            position: absolute;
+            top: 20px;
+            left: 60px;
+            font-size: 18px; 
+        }
+        #pause-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            background: rgb(14, 31, 81);
+            background-size: cover;
+            border: none;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #pause-button::before, #pause-button::after {
+            content: '';
+            width: 6px;
+            height: 18px;
+            background-color: white;
+            border-radius: 2px;
+            display: inline-block;
+        }
+        
+        #pause-button::before {
+            margin-right: 2px;
+        }
+        
+        #pause-button::after {
+            margin-left: 2px;
+        }
+        
+        #play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: rgb(76, 112, 153);
+            border: none;
+            cursor: pointer;
+            border-radius: 50%; /* Makes it a perfect circle */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #play-button::before {
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            border-left: 40px solid white; /* Triangle shape */
+            border-top: 25px solid transparent;
+            border-bottom: 25px solid transparent;
+            margin-left: 10px; /* Slightly shift right for better centering */
+        }
+        
         .color-picker .color-btn {
             width: 30px;
             height: 30px;
@@ -42,10 +133,6 @@
         .active {
             display: block;
         }
-        body {
-            background: linear-gradient(to bottom, #87CEFA, #4682B4);
-            font-family: 'Nunito', sans-serif;
-        }
 
         .tab-button {
             background: #4682B4;
@@ -54,7 +141,7 @@
             border-radius: 0.75rem;
             transition: transform 0.2s;
             margin-right: 0.5rem;
-            font-size: 18px;
+            font-size: 15px;
         }
 
 
@@ -80,6 +167,7 @@
         <button class="tab-button" onclick="showTab('memories')">Memories</button>
         <button class="tab-button" onclick="showTab('journal')">Thoughts Journal</button>
         <button class="tab-button" onclick="showTab('drawing')">Dream Catcher</button>
+        <button class="tab-button" onclick="showTab('game')">Game</button>
         <button class="tab-button" onclick="showTab('music')">Soothing Music</button>
     </nav>
 
@@ -87,6 +175,12 @@
 
         <!-- Personalized Voice Recordings -->
         <section id="voice" class="hidden">
+            <h2 class="text-[rgb(5,12,49)] text-2xl mb-4 mt-6">Stories</h2>
+            <div class="custom-card space-y-4">
+                <audio controls class="w-full">
+                    <source src="asserts\audio\the tale of the sleeping maiden.m4a" type="audio/mp3">
+                </audio>
+            </div>
             <h2 class="text-[rgb(5,12,49)] text-2xl mb-4 mt-6">From my Notebook</h2>
             <div class="custom-card space-y-4">
                 <audio controls class="w-full">
@@ -141,28 +235,39 @@
         <section id="memories" class="hidden">
             <div class="custom-card grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <div class="flex flex-col items-center">
-                    <img src="asserts\images\1.png" alt="Memory 1" class="rounded-lg shadow-lg">
+                    <img src="asserts\images\4.png" alt="Memory 1" class="rounded-lg shadow-lg">
                 </div>
                 <div class="flex flex-col items-center">
-                    <img src="asserts\images\MEMORY1.PNG" alt="Memory 2" class="rounded-lg shadow-lg">
+                    <img src="asserts\images\memory 6.jpg" alt="Memory 2" class="rounded-lg shadow-lg">
+                    <p class="text-sm mt-2">Us everyday.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <img src="asserts\images\5.png" alt="Memory 3" class="rounded-lg shadow-lg">
+                </div>
+                <div class="flex flex-col items-center">
+                    <img src="asserts/images/memory4.jpg" alt="Memory 4" class="rounded-lg shadow-lg">
+                    <p class="text-sm mt-2">Once upon a time in DHA roundabout.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <img src="asserts/images/2.png" alt="Memory 5" class="rounded-lg shadow-lg">
+                </div>
+                <div class="flex flex-col items-center">
+                    <img src="asserts/images/memory5.jpg" alt="Memory 6" class="rounded-lg shadow-lg">
+                    <p class="text-sm mt-2">Farewell shenanigans in bus.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <img src="asserts/images/1.png" alt="Memory 7" class="rounded-lg shadow-lg">
+                </div>
+                <div class="flex flex-col items-center">
+                    <img src="asserts/images/MEMORY1.PNG" alt="Memory 8" class="rounded-lg shadow-lg">
                     <p class="text-sm mt-2">You have the original version at the back of your phone.</p>
                 </div>
                 <div class="flex flex-col items-center">
-                    <img src="asserts\images\3.png" alt="Memory 3" class="rounded-lg shadow-lg">
-                </div>
-                <div class="flex flex-col items-center">
-                    <img src="asserts\images\memory4.jpg" alt="Memory 1" class="rounded-lg shadow-lg">
-                    <p class="text-sm mt-2">Once upon a time in DHA roundabout.</p>
-                </div>
-                <div class="flex flex-col items-center mt-12">
-                    <img src="asserts\images\2.png" alt="Memory 2" class="rounded-lg shadow-lg">
-                </div>
-                <div class="flex flex-col items-center">
-                    <img src="asserts\images\memory5.jpg" alt="Memory 3" class="rounded-lg shadow-lg">
-                    <p class="text-sm mt-2">Farewell shenanigans in bus.</p>
+                    <img src="asserts/images/3.png" alt="Memory 9" class="rounded-lg shadow-lg">
                 </div>
             </div>
         </section>
+        
 
         <!-- Thoughts Journal -->
         <section id="journal" class="hidden">
@@ -180,7 +285,7 @@
         <section id="drawing" class="hidden">
             <h2 class="text-[rgb(5,12,49)] text-2xl mb-4">Dream Catcher Drawing</h2>
             <div class="custom-card flex items-center">
-                <div class="color-palette flex flex-col space-y-2 mr-4">
+                <div class="color-palette flex flex-col ml-20 space-y-2 mr-4">
                     <button onclick="setColor('#4682B4')" class="color-btn w-10 h-10 rounded-full" style="background-color: #4682B4;"></button>
                     <button onclick="setColor('#FF6B6B')" class="color-btn w-10 h-10 rounded-full" style="background-color: #FF6B6B;"></button>
                     <button onclick="setColor('#2ECC71')" class="color-btn w-10 h-10 rounded-full" style="background-color: #2ECC71;"></button>
@@ -191,9 +296,9 @@
                     <button onclick="setColor('#E74C3C')" class="color-btn w-10 h-10 rounded-full" style="background-color: #E74C3C;"></button>
                     <button onclick="setColor('#000000')" class="color-btn w-10 h-10 rounded-full" style="background-color: #000000;"></button>
                 </div>
-                <canvas id="drawingCanvas" width="400" height="400" style="border: 2px solid #4682B4; border-radius: 50%; background-color: white;"></canvas>
-                <p class="text-sm mb-20">Take a Screenshot to save, download capability is under development.</p>
+                <canvas id="drawingCanvas" width="800" height="400" style="border: 2px solid #4682B4; border-radius: 50%; background-color: white; margin-right:200px; margin-left:200px;"></canvas>
             </div>
+            <p class="text-[rgb(5,12,49)]  mb-20 mt-5">Take a Screenshot to save, download capability is under development.</p>
         </section>
 
         <!-- Soothing Music -->
@@ -210,6 +315,16 @@
                 <audio controls class="w-full">
                     <source src="song3.mp3" type="audio/mp3">
                 </audio> -->
+            </div>
+        </section>
+
+        <section id="game" class="hidden mb-0">
+            <div id="game-container">
+                <div id="score-container">Score: 0</div>
+                <div id="high-score">High Score: 0</div>
+                <div id="timer">Time: 45</div>
+                <button id="pause-button"></button>
+                <button id="play-button"></button>
             </div>
         </section>
 
@@ -288,6 +403,105 @@
                 ctx.beginPath();
             }
         });
+        let gameActive = false;
+        let score = 0;
+        let highScore = localStorage.getItem("highScore") || 0;
+        let gameInterval, timerInterval;
+        let timeLeft = 45;
+        document.getElementById("high-score").innerText = "High Score: " + highScore;
+        
+        const balloonImages = [
+            "nightmare-walker.github.io\asserts\images\t1.png", "nightmare-walker.github.io\asserts\images\t2.png", "nightmare-walker.github.io\asserts\images\t3.png", 
+            "nightmare-walker.github.io\asserts\images\flying.png", "nightmare-walker.github.io\asserts\images\flying2.png", "nightmare-walker.github.io\asserts\images\flying 4.png"
+        ];
+        
+        const popSounds = [
+            "pop1.mp3", "pop2.mp3", "pop3.mp3", "pop4.mp3", "pop5.mp3", "pop6.mp3", "pop7.mp3"
+        ];
+        
+        function isGameTabVisible() {
+            return !document.getElementById("game").classList.contains("hidden");
+        }
+        
+        function startGame() {
+            if (!isGameTabVisible()) return;
+            document.getElementById("play-button").remove();
+            gameActive = true;
+            score = 0;
+            timeLeft = 45;
+            document.getElementById("score-container").innerText = "Score: 0";
+            document.getElementById("timer").innerText = "Time: " + timeLeft;
+            timerInterval = setInterval(updateTimer, 1000);
+            gameInterval = setInterval(spawnBalloon, 1000);
+        }
+        
+        function updateTimer() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                document.getElementById("timer").innerText = "Time: " + timeLeft;
+            } else {
+                endGame();
+            }
+        }
+        
+        function spawnBalloon() {
+            if (!gameActive || !isGameTabVisible()) return;
+            let balloon = document.createElement("img");
+            balloon.src = balloonImages[Math.floor(Math.random() * balloonImages.length)];
+            balloon.classList.add("balloon");
+            balloon.style.left = Math.random() * (document.getElementById("game-container").offsetWidth - 50) + "px";
+            balloon.style.bottom = "-70px";
+            document.getElementById("game-container").appendChild(balloon);
+            let riseInterval = setInterval(() => {
+                if (!gameActive || !isGameTabVisible()) {
+                    clearInterval(riseInterval);
+                    balloon.remove();
+                    return;
+                }
+                balloon.style.bottom = parseInt(balloon.style.bottom) + 5 + "px";
+                if (parseInt(balloon.style.bottom) > document.getElementById("game-container").offsetHeight) {
+                    clearInterval(riseInterval);
+                    balloon.remove();
+                }
+            }, 50);
+            balloon.addEventListener("click", function() {
+                popBalloon(balloon);
+            });
+        }
+        
+        function popBalloon(balloon) {
+            score++;
+            document.getElementById("score-container").innerText = "Score: " + score;
+            let audio = new Audio(popSounds[Math.floor(Math.random() * popSounds.length)]);
+            audio.play();
+            balloon.remove();
+        }
+        
+        function endGame() {
+            gameActive = false;
+            clearInterval(gameInterval);
+            clearInterval(timerInterval);
+            alert("Game Over! Your score: " + score);
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem("highScore", highScore);
+                document.getElementById("high-score").innerText = "High Score: " + highScore;
+            }
+            location.reload();
+        }
+        
+        document.getElementById("play-button").addEventListener("click", startGame);
+        document.getElementById("pause-button").addEventListener("click", function() {
+            gameActive = !gameActive;
+            if (gameActive) {
+                this.classList.remove("play");
+                this.classList.add("pause");
+            } else {
+                this.classList.remove("pause");
+                this.classList.add("play");
+            }
+        });
+        
 
     </script>
 
